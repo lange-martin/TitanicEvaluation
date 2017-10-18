@@ -13,7 +13,7 @@ p.code {
 
 p {
     font-size: 1em;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -28,9 +28,44 @@ h3 {
     font-family: Verdana;
 }
 
+.file + label {
+    font-size: 1em; padding: 2px 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-style: solid;
+    border-width: 1px;
+    background-color: white;
+    display: inline-block;
+    width: 200px;
+}
+
+.file + label:hover {
+    background-color: #CCD3E7;
+}
+
+input.button {
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px;
+    border-width: 1px;
+    background-color: white;
+}
+
+input.file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+input:hover {
+    background-color: #CCD3E7;
+}
+
 a {
     font-size: 1em;
-    font-family: Verdana;
+    font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     color: #1D7EED;
 }
