@@ -47,10 +47,11 @@ public class Evaluator {
 
                 // Deaths
                 if (nextLine.length >= 5) {
+                    if (nextLine[4].length() > 0) {
                         statistic[0].addDeadPassenger();
                         death = true;
+                    }
                 }
-
                 // add data to respective class
                 if (nextLine.length >=4) {
                     String classCell = nextLine[3].trim();
