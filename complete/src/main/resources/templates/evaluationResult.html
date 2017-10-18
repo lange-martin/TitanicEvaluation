@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Evaluation Result</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Result</h1>
+<h3>All Passengers + Crew</h3>
+<p th:text="${evaluator.report(0)}" />
+<h3>First Class</h3>
+<p th:text="${evaluator.report(1)}" />
+<h3>Second Class</h3>
+<p th:text="${evaluator.report(2)}" />
+<h3>Third Class</h3>
+<p th:text="${evaluator.report(3)}" />
+<h3>Ages 0 to 19</h3>
+<p th:text="${evaluator.report(4)}" />
+<h3>Ages 20 to 39</h3>
+<p th:text="${evaluator.report(5)}" />
+<h3>Ages 40 to 59</h3>
+<p th:text="${evaluator.report(6)}" />
+<h3>Ages 60 to 79</h3>
+<p th:text="${evaluator.report(7)}" />
+</body>
+</html>

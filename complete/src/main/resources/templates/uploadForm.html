@@ -20,6 +20,10 @@
 				<a th:href="${file}" th:text="${file}" />
 			</li>
 		</ul>
+		<form action="#" th:action="@{/eval}" th:object="${evaluator}" method="post">
+			<p>Input File Name: <input type="text" th:field="*{path}" /></p>
+			<input type="submit" value="Evaluate" />
+		</form>
 	</div>
 
 </body>

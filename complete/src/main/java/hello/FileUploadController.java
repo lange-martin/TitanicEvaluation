@@ -40,6 +40,7 @@ public class FileUploadController {
                         "serveFile", path.getFileName().toString()).build().toString())
                 .collect(Collectors.toList()));
 
+        model.addAttribute("evaluator", new Evaluator());
         return "uploadForm";
     }
 

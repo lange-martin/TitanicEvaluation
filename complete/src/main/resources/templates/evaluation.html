@@ -1,0 +1,11 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1>Evaluation Page</h1>
+<form action="#" th:action="@{/eval}" th:object="${evaluator}" method="post">
+    <p>Path: <input type="text" th:field="*{path}" /></p>
+    <p><input type="submit" value="Evaluate" /></p>
+</form>
+
+</body>
+</html>
