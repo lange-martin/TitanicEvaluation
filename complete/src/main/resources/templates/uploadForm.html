@@ -1,9 +1,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Evaluator - Upload</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
 <body>
 
 	<h1>CSV-Upload</h1>
 	<h3>CSV files with the following format can be evaluated by this app:</h3>
-	<p>Last Name (String), First Name (String), Age (Integer), Class (Digit), Died (empty = false/any data = true)</p>
+	<p class="code">Last Name (String), First Name (String), Age (Integer), Class (Digit), Died (empty = false/any data = true)</p>
 
 	<hr />
 
@@ -24,7 +29,8 @@
 		<ul>
 			<li th:each="file : ${files}">
 				<a th:href="${file}" th:text="${file}" />
-				<a th:href="${file} + '/eval'" th:text="Evaluation" />
+				<a style="float:right;" th:href="${file} + '/eval'" th:text="Evaluation" />
+				<hr/>
 			</li>
 		</ul>
 	</div>
