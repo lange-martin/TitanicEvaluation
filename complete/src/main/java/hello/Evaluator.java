@@ -47,22 +47,21 @@ public class Evaluator {
 
                 // Deaths
                 if (nextLine.length >= 5) {
-                    if (nextLine[4].trim().equals("†")) {
                         statistic[0].addDeadPassenger();
                         death = true;
-                    }
                 }
 
                 // add data to respective class
                 if (nextLine.length >=4) {
                     String classCell = nextLine[3].trim();
+                    classCell = classCell.substring(0, 1);
                     int arrayField;
                     switch (classCell) {
-                        case "1. Klasse": arrayField = 1;
+                        case "1": arrayField = 1;
                             break;
-                        case "2. Klasse": arrayField = 2;
+                        case "2": arrayField = 2;
                             break;
-                        case "3. Klasse": arrayField = 3;
+                        case "3": arrayField = 3;
                             break;
                         default: arrayField = 3;
                             break;

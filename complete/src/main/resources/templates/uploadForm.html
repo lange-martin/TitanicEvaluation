@@ -1,20 +1,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 
-	<div th:if="${message}">
-		<h2 th:text="${message}"/>
-	</div>
+	<h1>CSV-Upload</h1>
+	<h3>CSV files with the following format can be evaluated by this app:</h3>
+	<p>Last Name (String), First Name (String), Age (Integer), Class (Digit), Died (empty = false/any data = true)</p>
+
+	<hr />
 
 	<div>
 		<form method="POST" enctype="multipart/form-data" action="/">
-			<table>
-				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-			</table>
+			<p>File to upload: <input type="file" name="file" accept=".csv" /> <input type="submit" value="Upload" /></p>
 		</form>
 	</div>
 
+	<div th:if="${message}">
+		<p th:text="${message}"/>
+	</div>
+
+	<hr />
+
 	<div>
+		<h3>File List</h3>
 		<ul>
 			<li th:each="file : ${files}">
 				<a th:href="${file}" th:text="${file}" />
@@ -22,6 +28,7 @@
 			</li>
 		</ul>
 	</div>
+
 
 </body>
 </html>
