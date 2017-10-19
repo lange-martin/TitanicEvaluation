@@ -1,9 +1,9 @@
 body {
     background-color: white;
-    margin-left: 20%;
-    margin-right: 20%;
-    min-width: 300px;
+    width: 80%;
+    min-width: 750px;
     max-width: 1000px;
+    margin: 0 auto;
 }
 
 p.code {
@@ -24,6 +24,8 @@ h1 {
     color: #1D7EED;
     font-size: 3em; padding: 5px 12px;
     background-color: #CCD3E7;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 h3 {

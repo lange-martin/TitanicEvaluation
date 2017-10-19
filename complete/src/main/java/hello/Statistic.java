@@ -5,6 +5,8 @@ public class Statistic {
     private double passengersDead;
     private double totalAge;
     private double passengers;
+    private int female;
+    private int male;
     private int oldest;
     private String oldestName;
 
@@ -12,6 +14,8 @@ public class Statistic {
         this.passengersDead = 0;
         this.totalAge = 0;
         this.passengers = 0;
+        this.female = 0;
+        this.male = 0;
         this.oldest = 0;
         this.oldestName = "";
     }
@@ -28,6 +32,14 @@ public class Statistic {
         return passengers;
     }
 
+    public int getFemale() {
+        return female;
+    }
+
+    public int getMale() {
+        return male;
+    }
+
     public int getOldest() {
         return oldest;
     }
@@ -42,6 +54,14 @@ public class Statistic {
 
     public void addPassenger() {
         this.passengers++;
+    }
+
+    public void addFemale() {
+        this.female++;
+    }
+
+    public void addMale() {
+        this.male++;
     }
 
     public void addAgeToTotal(int age, String name) {
