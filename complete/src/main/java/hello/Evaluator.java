@@ -9,7 +9,7 @@ public class Evaluator {
 
     private String path;
 
-    private Statistic[] statistic = new Statistic[8];
+    public Statistic[] statistic = new Statistic[9];
 
     public String getPath() {
         return path;
@@ -30,8 +30,9 @@ public class Evaluator {
         //Read CSV line by line and use the string array as you want
         String[] nextLine;
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i <= 8; i++) {
             statistic[i] = new Statistic();
+            // 0: all (Crew + Passengers); 1-3: classes; 4-7: age groups (twenty years); 8: crew
         }
 
         while ((nextLine = reader.readNext()) != null) {
@@ -41,21 +42,21 @@ public class Evaluator {
                 boolean death = false;
 
                 // Age
-                age = Integer.parseInt(nextLine[2].trim());
-                statistic[0].addAgeToTotal(age, nextLine[1]+" "+nextLine[0]);
-                statistic[0].addPassenger();
+                age = Integer.parseInt(nextLine[2].trim()); // age is in the third column
+                statistic[0].addAgeToTotal(age, nextLine[1]+" "+nextLine[0]); // age added to total and passes name of passenger in case they are the oldest
+                statistic[0].addPassenger(); // passenger count increased by one
 
                 // Deaths
-                if (nextLine.length >= 5) {
-                    if (nextLine[4].length() > 0) {
+                if (nextLine.length >= 5) { // this line has at least 5 columns
+                    if (nextLine[4].length() > 0) { // column 5 is not empty
                         statistic[0].addDeadPassenger();
                         death = true;
                     }
                 }
-                // add data to respective class
+                // add data to respective class (or crew)
                 if (nextLine.length >=4) {
                     String classCell = nextLine[3].trim();
-                    classCell = classCell.substring(0, 1);
+                    classCell = classCell.substring(0, 1); // takes first character of class cell (should be digit)
                     int arrayField;
                     switch (classCell) {
                         case "1": arrayField = 1;
@@ -64,7 +65,7 @@ public class Evaluator {
                             break;
                         case "3": arrayField = 3;
                             break;
-                        default: arrayField = 3;
+                        default: arrayField = 8; // if first character is no digit -> passenger must be part of crew
                             break;
                     }
                     statistic[arrayField].addAgeToTotal(age, nextLine[1]+" "+nextLine[0]);
@@ -104,7 +105,7 @@ public class Evaluator {
         }
     }
 
-    public String report(int group) {
+    public String report(int group) { // String with data for one of the statistic objects
         String output = "";
         output += "Passengers: " + statistic[group].getPassengers() + " | ";
         output += "Average Age: " + statistic[group].getAverageAge() + " | ";
@@ -114,12 +115,23 @@ public class Evaluator {
         return output;
     }
 
-    private static boolean isReadablePassenger(String[] line) {
-        if (line.length > 3) {
-            try {
-                int a = Integer.parseInt(line[2].trim());
+    public int getValue(int group, int value) {
+        switch (value) {
+            case 0: return (int) statistic[group].getPassengers();
+            case 1: return (int) statistic[group].getAverageAge();
+            case 2: return (int) statistic[group].getOldest();
+            case 3: return (int) statistic[group].getPassengersDead();
+            case 4: return (int) statistic[group].getDeathPercentage();
+            default: return 0;
+        }
+    }
+
+    private static boolean isReadablePassenger(String[] line) { // true if this line is formatted correctly for this reader
+        if (line.length > 3) { // must have more than 3 columns (surname, forename, age, class, death (optional))
+            try { // this bit is hacky: checks if column 3 includes only a number (age)
+                int a = Integer.parseInt(line[2].trim()); // no exception -> return true
                 return true;
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException e) { // parseInt will throw exception if it's not a number -> return false
                 return false;
             }
         } else {

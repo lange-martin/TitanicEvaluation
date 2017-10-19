@@ -1,3 +1,5 @@
+// File originally part of "Getting Started - Uploading Files"-Tutorial (https://spring.io/guides/gs/uploading-files/)
+
 package hello.storage;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Evaluator - Result</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<h1>Titanic Evaluation</h1>
+
+<h3 th:text="'Evaluation of: ' + ${evaluator.path}"></h3>
+
+<center>
+<table th:unless="${evaluator.getValue(0, 0)} == 0">
+    <thead>
+        <tr>
+            <td><h5>Group</h5></td>
+            <td><h5>Passengers</h5></td>
+            <td><h5>Average Age</h5></td>
+            <td><h5>Highest Age</h5></td>
+            <td><h5>Deaths</h5></td>
+            <td><h5>Death Rate (%)</h5></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:unless="${evaluator.getValue(0, 0)} == 0">
+            <td><h5>Everyone</h5></td>
+            <td class="value"><p th:text="${evaluator.getValue(0, 0)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(0, 1)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(0, 2)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(0, 3)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(0, 4)}" /></td>
+        </tr>
+        <tr th:unless="${evaluator.getValue(1, 0)} == 0">
+            <td><h5>First Class</h5></td>
+            <td class="value"><p th:text="${evaluator.getValue(1, 0)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(1, 1)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(1, 2)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(1, 3)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(1, 4)}" /></td>
+        </tr>
+        <tr th:unless="${evaluator.getValue(2, 0)} == 0">
+            <td><h5>Second Class</h5></td>
+            <td class="value"><p th:text="${evaluator.getValue(2, 0)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(2, 1)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(2, 2)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(2, 3)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(2, 4)}" /></td>
+        </tr>
+        <tr th:unless="${evaluator.getValue(3, 0)} == 0">
+            <td><h5>Third Class</h5></td>
+            <td class="value"><p th:text="${evaluator.getValue(3, 0)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(3, 1)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(3, 2)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(3, 3)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(3, 4)}" /></td>
+        </tr>
+        <tr th:unless="${evaluator.getValue(8, 0)} == 0">
+            <td><h5>Crew</h5></td>
+            <td class="value"><p th:text="${evaluator.getValue(8, 0)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(8, 1)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(8, 2)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(8, 3)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(8, 4)}" /></td>
+        </tr>
+        <tr th:unless="${evaluator.getValue(4, 0)} == 0">
+            <td><h5>Ages 0 to 19</h5></td>
+            <td class="value"><p th:text="${evaluator.getValue(4, 0)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(4, 1)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(4, 2)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(4, 3)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(4, 4)}" /></td>
+        </tr>
+        <tr th:unless="${evaluator.getValue(5, 0)} == 0">
+            <td><h5>Ages 20 to 39</h5></td>
+            <td class="value"><p th:text="${evaluator.getValue(5, 0)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(5, 1)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(5, 2)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(5, 3)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(5, 4)}" /></td>
+        </tr>
+        <tr th:unless="${evaluator.getValue(6, 0)} == 0">
+            <td><h5>Ages 40 to 59</h5></td>
+            <td class="value"><p th:text="${evaluator.getValue(6, 0)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(6, 1)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(6, 2)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(6, 3)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(6, 4)}" /></td>
+        </tr>
+        <tr th:unless="${evaluator.getValue(7, 0)} == 0">
+            <td><h5>Ages 60 to 79</h5></td>
+            <td class="value"><p th:text="${evaluator.getValue(7, 0)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(7, 1)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(7, 2)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(7, 3)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(7, 4)}" /></td>
+        </tr>
+    </tbody>
+</table>
+</center>
+
+<p th:if="${evaluator.getValue(0, 0) == 0}">This file contains no line that can be evaluated - please consult the format information on the homepage!</p>
+
+<hr />
+
+<a style="float:right;" href="/">Upload and File List</a>
+
+</body>
+</html>

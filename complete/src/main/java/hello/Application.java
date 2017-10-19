@@ -1,3 +1,6 @@
+// File originally part of "Getting Started - Uploading Files"-Tutorial (https://spring.io/guides/gs/uploading-files/)
+// changed by "MLcase" (github) to not delete files on startup
+
 package hello;
 
 import org.springframework.boot.CommandLineRunner;
@@ -20,7 +23,7 @@ public class Application {
     @Bean
     CommandLineRunner init(StorageService storageService) {
         return (args) -> {
-            storageService.deleteAll();
+            //storageService.deleteAll();
             storageService.init();
         };
     }

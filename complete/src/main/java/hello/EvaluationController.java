@@ -17,6 +17,6 @@ public class EvaluationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "evaluationResult";
+        return "evaluationResultTest";
     }
 }

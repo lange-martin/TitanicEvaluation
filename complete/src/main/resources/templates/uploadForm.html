@@ -1,3 +1,6 @@
+<!-- File originally part of "Getting Started - Uploading Files"-Tutorial (https://spring.io/guides/gs/uploading-files/) -->
+<!-- changed by "MLcase" (github) to include evaluation of CSV files -->
+
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Evaluator - Upload</title>
@@ -7,9 +10,9 @@
 <body>
 
 	<h1>Titanic Evaluation</h1>
-	<h3>CSV-Upload</h3>
+	<h3>Upload (.csv)</h3>
 	<p>Lines with the following format can be evaluated by this app:</p>
-	<p class="code">Surname (String), Forename (String), Age (Integer), Class (Digit), Died (any content=true)</p>
+	<p class="code">Surname (String), Forename (String), Age (Integer), Class (First character=Digit, otherwise part of crew), Died (any content=true)</p>
 	<hr />
 
 	<center>
