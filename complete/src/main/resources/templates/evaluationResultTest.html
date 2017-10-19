@@ -17,8 +17,8 @@
         <tr>
             <td><h5>Group</h5></td>
             <td><h5>Passengers</h5></td>
-            <td><h5>Females</h5></td>
-            <td><h5>Males</h5></td>
+            <td><h5>Women</h5></td>
+            <td><h5>Men</h5></td>
             <td><h5>Average Age</h5></td>
             <td><h5>Highest Age</h5></td>
             <td><h5>Deaths</h5></td>
@@ -35,6 +35,26 @@
             <td class="value"><p th:text="${evaluator.getValue(0, 4)}" /></td>
             <td class="value"><p th:text="${evaluator.getValue(0, 5)}" /></td>
             <td class="value"><p th:text="${evaluator.getValue(0, 6)}" /></td>
+        </tr>
+        <tr th:unless="${evaluator.getValue(9, 0)} == 0">
+            <td><h5>Women</h5></td>
+            <td class="value"><p th:text="${evaluator.getValue(9, 0)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(9, 1)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(9, 2)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(9, 3)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(9, 4)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(9, 5)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(9, 6)}" /></td>
+        </tr>
+        <tr th:unless="${evaluator.getValue(10, 0)} == 0">
+            <td><h5>Men</h5></td>
+            <td class="value"><p th:text="${evaluator.getValue(10, 0)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(10, 1)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(10, 2)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(10, 3)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(10, 4)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(10, 5)}" /></td>
+            <td class="value"><p th:text="${evaluator.getValue(10, 6)}" /></td>
         </tr>
         <tr th:unless="${evaluator.getValue(1, 0)} == 0">
             <td><h5>First Class</h5></td>

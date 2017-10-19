@@ -7,9 +7,9 @@ import au.com.bytecode.opencsv.CSVReader;
 
 public class Evaluator {
 
-    private String path;
-    private boolean success;
-    public Statistic[] statistic = new Statistic[9];
+    private String path; // filename
+    private boolean success; // true if the application was able to evaluate data of the file (important for evaluationResultTest.html)
+    private Statistic[] statistic = new Statistic[11]; // every cell of this array is one group (crew, age groups, classes, ...)
 
     public String getPath() {
         return path;
@@ -17,44 +17,39 @@ public class Evaluator {
     public boolean getSuccess() {
         return success;
     }
-    public void setPath(String path) {
+    void setPath(String path) {
         this.path = path;
     }
 
-    public void run() throws IOException {
-        CSVReader reader = new CSVReader(new FileReader("upload-dir/" + path), ',', '"', 0);
+    void run() throws IOException { // called by EvaluationController.java - this kicks of the evaluation
+        CSVReader reader = new CSVReader(new FileReader("upload-dir/" + path), ',', '"', 0); // I use openCSV to read the csv file line by line
 
-        String[] nextLine;
+        String[] nextLine; // this String array always contains all the cells of one line
         success = false;
-        boolean foundFormat = false;
+        boolean foundFormat = false; // used to end the following while-loop
 
-        while ((nextLine = reader.readNext()) != null && !foundFormat) {
-            if (readableLineFormatOne(nextLine)) {
+        while ((nextLine = reader.readNext()) != null && !foundFormat) { // read as long as the next line is not null (end of document) and no fitting format has been found
+            if (readableLineFormatOne(nextLine)) { // if this line fits format 1 -> evaluate using this format
                 formatOne();
                 success = true;
                 foundFormat = true;
-            } else if (readableLineFormatTwo(nextLine)) {
+            } else if (readableLineFormatTwo(nextLine)) { // if it fits format 2 -> use that one
                 formatTwo();
                 success = true;
                 foundFormat = true;
             }
-        }
+        } // continue until a fitting format has been found or the file has ended
     }
 
-    public void formatOne() throws IOException {
-        //Build reader instance
-        //Read data.csv
-        //Default seperator is comma
-        //Default quote character is double quote
-        //Start reading from first line (line numbers start from zero)
+    private void formatOne() throws IOException { // evaluation for a file that fits the first format
+
         CSVReader reader = new CSVReader(new FileReader("upload-dir/" + path), ',' , '"' , 0);
 
-        //Read CSV line by line and use the string array as you want
         String[] nextLine;
 
-        for (int i = 0; i <= 8; i++) {
+        for (int i = 0; i <= 10; i++) { // initializes all statistic objects
             statistic[i] = new Statistic();
-            // 0: all (Crew + Passengers); 1-3: classes; 4-7: age groups (twenty years); 8: crew
+            // 0: all (Crew + Passengers); 1-3: classes; 4-7: age groups (twenty years); 8: crew; 9+10: female+male (not used in this format)
         }
 
         while ((nextLine = reader.readNext()) != null) {
@@ -75,6 +70,7 @@ public class Evaluator {
                         death = true;
                     }
                 }
+
                 // add data to respective class (or crew)
                 if (nextLine.length >=4) {
                     String classCell = nextLine[3].trim();
@@ -127,20 +123,16 @@ public class Evaluator {
         }
     }
 
-    public void formatTwo() throws IOException {
-        //Build reader instance
-        //Read data.csv
-        //Default seperator is comma
-        //Default quote character is double quote
-        //Start reading from first line (line numbers start from zero)
+    private void formatTwo() throws IOException { // evaluation for a file that fits the second format
+
         CSVReader reader = new CSVReader(new FileReader("upload-dir/" + path), ',' , '"' , 0);
 
         //Read CSV line by line and use the string array as you want
         String[] nextLine;
 
-        for (int i = 0; i <= 8; i++) {
+        for (int i = 0; i <= 10; i++) {
             statistic[i] = new Statistic();
-            // 0: all (Crew + Passengers); 1-3: classes; 4-7: age groups (twenty years); 8: crew; 9: sex
+            // 0: all (Crew + Passengers); 1-3: classes; 4-7: age groups (twenty years); 8: crew; 9+10: sex
         }
 
         while ((nextLine = reader.readNext()) != null) {
@@ -229,19 +221,26 @@ public class Evaluator {
                         statistic[7].addMale();
                     }
                 }
+
+                // add data to respective gender
+                if (isFemale) {
+                    statistic[9].addAgeToTotal(age, nextLine[2]);
+                    statistic[9].addPassenger();
+                    if (death) {
+                        statistic[9].addDeadPassenger();
+                    }
+                    statistic[9].addFemale();
+                } else {
+                    statistic[10].addAgeToTotal(age, nextLine[2]);
+                    statistic[10].addPassenger();
+                    if (death) {
+                        statistic[10].addDeadPassenger();
+                    }
+                    statistic[10].addMale();
+                }
             }
         }
     }
-
-//    public String report(int group) { // String with data for one of the statistic objects
-//        String output = "";
-//        output += "Passengers: " + statistic[group].getPassengers() + " | ";
-//        output += "Average Age: " + statistic[group].getAverageAge() + " | ";
-//        output += "Oldest Person: " + statistic[group].getOldestName() + ", " + statistic[group].getOldest() + " | ";
-//        output += "Deaths: " + statistic[group].getPassengersDead() + " | ";
-//        output += "Death Percentage: " + statistic[group].getDeathPercentage();
-//        return output;
-//    }
 
     public int getValue(int group, int value) {
         switch (value) {
