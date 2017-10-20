@@ -10,7 +10,7 @@ import java.io.IOException;
 public class EvaluationController {
 
     @GetMapping("/files/{filename:.+}/eval")
-    public String testFile(@ModelAttribute Evaluator evaluator, @PathVariable String filename) {
+    public String getResult(@ModelAttribute Evaluator evaluator, @PathVariable String filename, Model model) {
         evaluator.setPath(filename);
         try {
             evaluator.run();
@@ -18,5 +18,16 @@ public class EvaluationController {
             e.printStackTrace();
         }
         return "evaluationResultTest";
+    }
+
+    @GetMapping("/files/{filename:.+}/deathRate")
+    public String getDeathRate(@ModelAttribute Evaluator evaluator, @PathVariable String filename) {
+        evaluator.setPath(filename);
+        try {
+            evaluator.run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "evaluationDeathRate";
     }
 }

@@ -1,0 +1,63 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Evaluator - Death Rate</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <script th:src="@{/js/Chart.bundle.js}"></script>
+</head>
+<body>
+
+    <h1>Titanic Evaluation</h1>
+
+    <canvas id="myChart" style="max-width:100%"></canvas>
+    <script th:inline="javascript">
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Everyone", "First Class", "Second Class", "Third Class", "Ages 0 to 19"],
+        datasets: [{
+            label: 'Death Rate',
+
+            /*<![CDATA[*/
+
+            data: [ [[${evaluator.getValue(0, 6)}]], [[${evaluator.getValue(1, 6)}]], [[${evaluator.getValue(2, 6)}]], [[${evaluator.getValue(3, 6)}]], [[${evaluator.getValue(4, 6)}]]],
+
+            /*]]>*/
+
+            backgroundColor: [
+                'rgba(0, 0, 0, 0.2)',
+                'rgba(0, 0, 0, 0.2)',
+                'rgba(0, 0, 0, 0.2)',
+                'rgba(0, 0, 0, 0.2)',
+                'rgba(0, 0, 0, 0.2)'
+            ],
+            borderColor: [
+                'rgba(0,0,0,1)',
+                'rgba(0,0,0,1)',
+                'rgba(0,0,0,1)',
+                'rgba(0,0,0,1)',
+                'rgba(0,0,0,1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    max: 100,
+                    callback: function(value){return value+ "%"}
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: "Percentage"
+                }
+            }]
+        }
+    }
+});
+    </script>
+</body>
+</html>

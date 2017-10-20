@@ -4,6 +4,7 @@
     <title>Evaluator - Result</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <script th:src="@{/js/Chart.bundle.js}"></script>
 </head>
 <body>
 
@@ -22,7 +23,7 @@
             <td><h5>Average Age</h5></td>
             <td><h5>Highest Age</h5></td>
             <td><h5>Deaths</h5></td>
-            <td><h5>Death Rate (%)</h5></td>
+            <td><a href="deathRate"><h5>Death Rate (%)</h5></a></td>
         </tr>
     </thead>
     <tbody>
@@ -138,6 +139,58 @@
         </tr>
     </tbody>
 </table>
+<!--
+    <canvas id="myChart"></canvas>
+    <script th:inline="javascript">
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Everyone", "First Class", "Second Class", "Third Class", "Ages 0 to 19"],
+        datasets: [{
+            label: 'Death Rate',
+
+            /*<![CDATA[*/
+
+            data: [ [[${evaluator.getValue(0, 6)}]], [[${evaluator.getValue(1, 6)}]], [[${evaluator.getValue(2, 6)}]], [[${evaluator.getValue(3, 6)}]], [[${evaluator.getValue(4, 6)}]]],
+
+            /*]]>*/
+
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    max: 100,
+                    callback: function(value){return value+ "%"}
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: "Percentage"
+                }
+            }]
+        }
+    }
+});
+    </script>
+-->
 </center>
 
 <p th:if="${evaluator.getSuccess()} == false">This file contains no line that can be evaluated - please consult the format information on the homepage!</p>

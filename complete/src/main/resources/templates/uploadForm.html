@@ -12,9 +12,10 @@
 	<h1>Titanic Evaluation</h1>
 
 	<h3>Upload (.csv)</h3>
-	<p>Lines with the following formats can be evaluated by this app:</p>
-	<p>Format One: </p><p class="code">Surname (String), Forename (String), Age (Integer), Class (First character=Digit, otherwise part of crew), Died (any content=true)</p>
-	<p>Format Two: </p><p class="code">Class (Digit), Survived (1=true; 0=false), Name (String), Sex (male or female), age (Integer)</p>
+	<p>Files with one of the following formats can be evaluated by this app:</p>
+	<p>Format One: </p><p class="code">Surname, Forename, Age, Class (first character must be class number, otherwise part of crew), Died (true if this cell has any content)</p>
+	<p>Format Two: </p><p class="code">Class (single digit), Survived ("1"=true; "0"=false), Name, Sex ("male" or "female"), Age</p>
+	<p>Any other lines or cells beyond this format will be ignored. One file should only contain one kind of format.</p>
 	<hr />
 
 	<center>
@@ -42,7 +43,6 @@
 			</li>
 		</ul>
 	</div>
-
 
 </body>
 </html>
