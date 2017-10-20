@@ -102,7 +102,7 @@ var myChart = new Chart(ctx, {
 
 <hr />
 
-<div style="width:50%;">
+<div style="width:50%;float:left;">
 <canvas id="myPie"></canvas>
 <script th:inline="javascript">
 var ctx = document.getElementById("myPie").getContext('2d');
@@ -129,6 +129,34 @@ var myChart = new Chart(ctx, {
 });
     </script>
 
+</div>
+
+<div th:unless="${evaluator.getValue(9, 0)} == 0" style="width:50%;float:left;">
+    <canvas id="myPie2"></canvas>
+    <script th:inline="javascript">
+var ctx = document.getElementById("myPie2").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ["Women (Deaths)", "Women (Survived)", "Men (Survived)", "Men (Deaths)"],
+        datasets: [{
+            label: 'Passengers',
+
+            /*<![CDATA[*/
+
+            data: [ [[${evaluator.getValue(9, 5)}]], [[${evaluator.getValue(9, 0) - evaluator.getValue(9, 5)}]], [[${evaluator.getValue(10, 0) - evaluator.getValue(10, 5)}]], [[${evaluator.getValue(10, 5)}]]],
+
+            /*]]>*/
+
+            backgroundColor: ['rgba(128,50,66, 0.2)','rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(27,81,118, 0.2)'],
+
+            borderColor: ['rgba(128,50,66, 1)','rgba(255, 99, 132, 1)','rgba(54, 162, 235, 1)','rgba(27,81,118, 1)'],
+
+            borderWidth: 1
+        }]
+    }
+});
+    </script>
 </div>
 
 <hr />
