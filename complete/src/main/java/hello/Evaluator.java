@@ -255,11 +255,6 @@ public class Evaluator {
         }
     }
 
-    public String getData() {
-        String output = "[ " + getValue(0, 6) + ", " + getValue(1, 6) + ", " + getValue(2, 6) + ", " + getValue(3, 6) + ", " + getValue(4,6) + "]";
-        return output;
-    }
-
     private static boolean readableLineFormatOne(String[] line) { // true if this line is formatted correctly for this reader (format one)
         if (line.length > 3) { // must have more than 3 columns (surname, forename, age, class, death (optional))
             try { // this bit is hacky: checks if column 3 includes only a number (age)

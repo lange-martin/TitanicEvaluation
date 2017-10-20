@@ -1,0 +1,108 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Evaluator - Passengers</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <script th:src="@{/js/Chart.bundle.js}"></script>
+</head>
+<body>
+
+<h1>Titanic Evaluation</h1>
+
+<h3 th:text="'Evaluation of: ' + ${evaluator.path} + ' - Bar chart for passengers, women, men and deaths'"></h3>
+
+<a href="deathRate">Previous Chart (Death Rate)</a><a href="age" style="float:right;">Next Chart (Age)</a>
+
+<hr />
+
+<canvas id="myChart" style="max-width:100%"></canvas>
+<script th:inline="javascript">
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Everyone", "Women", "Men", "First Class", "Second Class", "Third Class", "Crew", "Ages 0 to 19", "Ages 20 to 39", "Ages 40 to 59", "Ages 60 to 79"],
+        datasets: [{
+            label: 'Passengers',
+
+            /*<![CDATA[*/
+
+            data: [ [[${evaluator.getValue(0, 0)}]], [[${evaluator.getValue(9, 0)}]], [[${evaluator.getValue(10, 0)}]], [[${evaluator.getValue(1, 0)}]], [[${evaluator.getValue(2, 0)}]], [[${evaluator.getValue(3, 0)}]], [[${evaluator.getValue(8, 0)}]], [[${evaluator.getValue(4, 0)}]], [[${evaluator.getValue(5, 0)}]], [[${evaluator.getValue(6, 0)}]], [[${evaluator.getValue(7, 0)}]],],
+
+            /*]]>*/
+
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+
+            borderColor: 'rgba(75, 192, 192, 1)',
+
+            borderWidth: 1
+        },
+        {
+            label: 'Women',
+
+            /*<![CDATA[*/
+
+            data: [ [[${evaluator.getValue(0, 1)}]], [[${evaluator.getValue(9, 1)}]], [[${evaluator.getValue(10, 1)}]], [[${evaluator.getValue(1, 1)}]], [[${evaluator.getValue(2, 1)}]], [[${evaluator.getValue(3, 1)}]], [[${evaluator.getValue(8, 1)}]], [[${evaluator.getValue(4, 1)}]], [[${evaluator.getValue(5, 1)}]], [[${evaluator.getValue(6, 1)}]], [[${evaluator.getValue(7, 1)}]],],
+
+            /*]]>*/
+
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+
+            borderColor: 'rgba(255, 99, 132, 1)',
+
+            borderWidth: 1
+
+        },
+        {
+            label: 'Men',
+
+            /*<![CDATA[*/
+
+            data: [ [[${evaluator.getValue(0, 2)}]], [[${evaluator.getValue(9, 2)}]], [[${evaluator.getValue(10, 2)}]], [[${evaluator.getValue(1, 2)}]], [[${evaluator.getValue(2, 2)}]], [[${evaluator.getValue(3, 2)}]], [[${evaluator.getValue(8, 2)}]], [[${evaluator.getValue(4, 2)}]], [[${evaluator.getValue(5, 2)}]], [[${evaluator.getValue(6, 2)}]], [[${evaluator.getValue(7, 2)}]],],
+
+            /*]]>*/
+
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+
+            borderColor: 'rgba(54, 162, 235, 1)',
+
+            borderWidth: 1
+
+        },
+        {
+            label: 'Deaths',
+
+            /*<![CDATA[*/
+
+            data: [ [[${evaluator.getValue(0, 5)}]], [[${evaluator.getValue(9, 5)}]], [[${evaluator.getValue(10, 5)}]], [[${evaluator.getValue(1, 5)}]], [[${evaluator.getValue(2, 5)}]], [[${evaluator.getValue(3, 5)}]], [[${evaluator.getValue(8, 5)}]], [[${evaluator.getValue(4, 5)}]], [[${evaluator.getValue(5, 5)}]], [[${evaluator.getValue(6, 5)}]], [[${evaluator.getValue(7, 5)}]],],
+
+            /*]]>*/
+
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+
+            borderColor: 'rgba(0, 0, 0, 1)',
+
+            borderWidth: 1
+
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+    </script>
+
+<hr />
+
+<a style="float:right;" href="/">Upload and File List</a>
+<br /><br />
+<a style="float:right;" href="eval">Evaluation Table</a>
+
+</body>
+</html>

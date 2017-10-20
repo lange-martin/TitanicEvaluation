@@ -30,4 +30,26 @@ public class EvaluationController {
         }
         return "evaluationDeathRate";
     }
+
+    @GetMapping("/files/{filename:.+}/passengers")
+    public String getPassengers(@ModelAttribute Evaluator evaluator, @PathVariable String filename) {
+        evaluator.setPath(filename);
+        try {
+            evaluator.run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "evaluationPassengers";
+    }
+
+    @GetMapping("/files/{filename:.+}/age")
+    public String getAge(@ModelAttribute Evaluator evaluator, @PathVariable String filename) {
+        evaluator.setPath(filename);
+        try {
+            evaluator.run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "evaluationAge";
+    }
 }
